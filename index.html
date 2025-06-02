@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karthi LeetCode</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="bg-animation"></div>
+    
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="brand">
+                <h1>Karthi LeetCode</h1>
+                <div class="brand-subtitle">Most Asked Questions by Companies</div>
+            </div>
+            <div class="header-links">
+                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ?autoplay=1&controls=0" target="_blank" class="header-link youtube">
+                    <i class="fab fa-youtube"></i>
+                    <span>Tutorial</span>
+                </a>
+                <a href="https://github.com/nikhilm25" target="_blank" class="header-link">
+                    <i class="fab fa-github"></i>
+                    <span>@nikhilm25</span>
+                </a>
+                <a href="https://github.com/nikhilm25/RelevantLeetcode" target="_blank" class="header-link primary">
+                    <i class="fas fa-code-branch"></i>
+                    <span>Contribute</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container" id="mainContainer">
+        <!-- Search and Filter Section -->
+        <section class="search-section fade-in">
+            <div class="search-header">
+                <h2 class="search-title">Find Your Next Challenge</h2>
+                <div class="view-toggle">
+                    <button class="view-btn active" data-view="grid">
+                        <i class="fas fa-th"></i>
+                    </button>
+                    <button class="view-btn" data-view="list">
+                        <i class="fas fa-list"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="search-filters">
+                <div class="filter-group">
+                    <input type="text" class="filter-input" id="searchInput" placeholder="Search problems...">
+                </div>
+                <div class="filter-group">
+                    <select class="filter-select" id="difficultyFilter">
+                        <option value="">Difficulty</option>
+                        <option value="easy">Easy</option>
+                        <option value="medium">Medium</option>
+                        <option value="hard">Hard</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <select class="filter-select" id="completionFilter">
+                        <option value="">All Questions</option>
+                        <option value="completed">Completed</option>
+                        <option value="incomplete">Incomplete</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <button class="clear-filters-btn" id="clearFiltersBtn">
+                        <i class="fas fa-times"></i>
+                        Clear All
+                    </button>
+                </div>
+            </div>
+
+            <!-- Filter Bubbles Section -->
+            <div class="filter-bubbles-section">
+                <div class="filter-category">
+                    <div class="filter-category-header">
+                        <div class="filter-category-title">
+                            <div class="filter-category-icon" style="background: var(--primary-gradient); color: white; border-radius: 4px;">
+                                <i class="fas fa-building"></i>
+                            </div>
+                            <span>Companies</span>
+                            <span id="activeCompaniesCount" style="color: var(--text-secondary); font-size: 0.8rem;">(0 selected)</span>
+                        </div>
+                        <input type="text" class="filter-search" id="companySearch" placeholder="Search companies...">
+                    </div>
+                    
+                    <div class="selected-bubbles" id="selectedCompaniesBubbles">
+                        <div class="bubbles-container"></div>
+                    </div>
+                    
+                    <div class="search-bubbles" id="searchCompaniesBubbles">
+                        <div class="bubbles-container"></div>
+                    </div>
+                </div>
+
+                <div class="filter-category">
+                    <div class="filter-category-header">
+                        <div class="filter-category-title">
+                            <div class="filter-category-icon" style="background: var(--success-gradient); color: white; border-radius: 4px;">
+                                <i class="fas fa-tags"></i>
+                            </div>
+                            <span>Topics</span>
+                            <span id="activeTopicsCount" style="color: var(--text-secondary); font-size: 0.8rem;">(0 selected)</span>
+                        </div>
+                        <input type="text" class="filter-search" id="topicSearch" placeholder="Search topics...">
+                    </div>
+                    
+                    <div class="selected-bubbles" id="selectedTopicsBubbles">
+                        <div class="bubbles-container"></div>
+                    </div>
+                    
+                    <div class="search-bubbles" id="searchTopicsBubbles">
+                        <div class="bubbles-container"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Problems Container -->
+        <section class="problems-container">
+            <div class="problems-header">
+                <div>
+                    <h2 class="problems-title">Problems</h2>
+                    <span class="problems-count" id="problemsCount">Loading...</span>
+                </div>
+                <div class="sort-options">
+                    <button class="sort-btn active" data-sort="frequency">
+                        <span>Frequency</span>
+                        <span class="sort-indicator">
+                            <i class="fas fa-sort-down"></i>
+                        </span>
+                    </button>
+                    <button class="sort-btn difficulty-sort" data-sort="difficulty">
+                        <span>Difficulty</span>
+                        <span class="sort-indicator">
+                            <i class="fas fa-sort-down"></i>
+                        </span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Loading State -->
+            <div class="loading" id="loadingState">
+                <div class="spinner"></div>
+            </div>
+
+            <!-- Grid View -->
+            <div class="problems-grid active" id="problemsGrid"></div>
+
+            <!-- List View -->
+            <div class="problems-list" id="problemsList">
+                <div class="list-header">
+                    <div style="text-align: center;">✓</div>
+                    <div>Problem</div>
+                    <div style="text-align: center;">Difficulty</div>
+                    <div style="text-align: center;">Freq.</div>
+                    <div>Topics</div>
+                    <div style="text-align: center;">Action</div>
+                </div>
+            </div>
+
+            <!-- Empty State -->
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <div class="empty-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <h3>No problems found</h3>
+                <p>Try adjusting your filters or search terms</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
