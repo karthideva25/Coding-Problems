@@ -14486,5 +14486,13 @@
         "Link of Question": "https://leetcode.com/problems/zuma-game",
         "Companies Asking This Question": "Baidu",
         "Topics": "String, Dynamic Programming, Stack, Breadth-First Search, Memoization"
+    },
+    {
+        "Difficulty": "Medium",
+        "Question": "Heap Sort",
+        "Frequency (Number of Companies)": 0,
+        "Link of Question": "https://www.geeksforgeeks.org/problems/heap-sort/1",
+        "Companies Asking This Question": "",
+        "Topics": "Sorting, Karthi"
     }
 ]
